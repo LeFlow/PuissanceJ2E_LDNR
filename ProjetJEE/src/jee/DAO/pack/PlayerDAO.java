@@ -23,7 +23,7 @@ public class PlayerDAO {
 		ps.executeUpdate();
 	}
 	
-	public void findPlayer (String pseudo) {
+	public int findOpponent (String pseudo) {
 		
 		PreparedStatement ps;
 		try {
@@ -31,19 +31,44 @@ public class PlayerDAO {
 			ps.setString(1,pseudo);
 			ResultSet result = ps.executeQuery();
 			result.first();
-			System.out.println("Resultat : " + result.getInt("idPlayer"));
 			
-			
-			
-			
-			
-			
+			return result.getInt("idPlayer");
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return 0;
+		}
+	}
+	
+	public void reinitPlayer(String pseudo) throws SQLException {
+		PreparedStatement ps;
+		try {
+			ps = conn.prepareStatement("UPDATE player SET isWaiting=true WHERE name=?");
+			ps.setString(1,pseudo);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public Boolean verifyIfIsExist (String pseudo) {
+		PreparedStatement ps;
+		try {
+			ps = conn.prepareStatement("SELECT COUNT(*) AS verif_exist FROM player WHERE name=?");
+			ps.setString(1,pseudo);
+			ResultSet result = ps.executeQuery();
+			result.first();
+			return result.getBoolean("verif_exist");
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
 		}
 
-
 	}
+	
+	
+	
+	
+	
 	
 }
