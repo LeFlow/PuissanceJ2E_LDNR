@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 public class loaderServlet extends HttpServlet {
 
 	public void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("WEB-INF/loader.jsp").forward(req, resp);
+		req.getRequestDispatcher("WEB-INF/views/loader.jsp").forward(req, resp);
 	}
 	
 }
