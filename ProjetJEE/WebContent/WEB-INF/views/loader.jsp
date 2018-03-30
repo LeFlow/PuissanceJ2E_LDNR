@@ -16,16 +16,33 @@
 		    <div class="row">
 		        <div class="col-md-12">
 		            <div class="loader">
-		                <div class="loader-inner box1"></div>
-		                <div class="loader-inner box2"></div>
-		                <div class="loader-inner box3"></div>
+		                <span></span>
+		                <span></span>
+		                <span></span>
+		                <span></span>
+		                <span></span>
+		                <span></span>
+		                <span></span>
+		                <span></span>
+		                <span></span>
+		                <span></span>
 		            </div>
-            	    <c:if test="${ !empty sessionScope.pseudo}">
-				        <p>${ sessionScope.pseudo }</p>
-				    </c:if>
 		        </div>
 		    </div>
+		    <div class="row">
+		    	<div class="col-md-12">
+		    	    <c:if test="${ !empty sessionScope.pseudo}">
+				        <h1>Bonjour ${ sessionScope.pseudo } !</h1>
+				        <h3>En attente d'un adversaire</h3>
+				    </c:if>
+		    	</div>
+		    </div>
 		</div>
+
+
+
+
+
 
 	</body>
 </html>
