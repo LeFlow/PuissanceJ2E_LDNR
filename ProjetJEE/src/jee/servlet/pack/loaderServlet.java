@@ -25,7 +25,6 @@ public class loaderServlet extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-    		req.getRequestDispatcher("WEB-INF/views/loader.jsp").forward(req, resp);
         }else {
     		PlayerDAO player;
 			try {
@@ -58,16 +57,22 @@ public class loaderServlet extends HttpServlet {
 			}
         }
         
+        try {
+			PlayerDAO oppenent = new PlayerDAO();
+			int idOppenent;
+			String NameOppenent;
+			idOppenent = oppenent.findOpponent(req.getParameter("pseudo"));
+			NameOppenent = oppenent.findPlayerNameById(idOppenent);
+			System.out.println(NameOppenent);
+			req.setAttribute("oppenent", NameOppenent);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
         
-//Recherche un adversaire
-//		try {
-//			new PlayerDAO().findOpponent(req.getParameter("pseudo"));
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-        
-        
+    	req.getRequestDispatcher("WEB-INF/views/loader.jsp").forward(req, resp);
 
 	}
+	
+
 	
 }

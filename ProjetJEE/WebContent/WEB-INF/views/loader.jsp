@@ -7,6 +7,7 @@
 		<title>En attende d'une nouvelle partie</title>
 		<%@ include file="head.jsp" %>
 		<link rel="stylesheet" type="text/css" href="css/loader.css"/>
+		<script src="./js/scriptLoader.js" charset="utf-8"></script>
 	</head>
 	<body>
 	
@@ -29,11 +30,14 @@
 		            </div>
 		        </div>
 		    </div>
-		    <div class="row">
+		    <div id="text" class="row">
 		    	<div class="col-md-12">
-		    	    <c:if test="${ !empty sessionScope.pseudo}">
-				        <h1>Bonjour ${ sessionScope.pseudo } !</h1>
+		    		<h1>Bonjour ${ sessionScope.pseudo } !</h1>
+		    	    <c:if test="${ sessionScope.pseudo != '' && oppenent==''}">
 				        <h3>En attente d'un adversaire</h3>
+				    </c:if>
+				    <c:if test="${ !empty oppenent}">
+				        <h3>Adversaire ${ oppenent } trouvé !</h3>
 				    </c:if>
 		    	</div>
 		    </div>

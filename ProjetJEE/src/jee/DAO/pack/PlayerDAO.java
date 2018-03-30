@@ -63,7 +63,22 @@ public class PlayerDAO {
 			e.printStackTrace();
 			return false;
 		}
-
+	}
+	
+	public String findPlayerNameById(int id) {
+		PreparedStatement ps;
+		try {
+			ps = conn.prepareStatement("SELECT name FROM player WHERE idPlayer=?");
+			ps.setInt(1,id);
+			ResultSet result = ps.executeQuery();
+			result.first();
+			System.out.println(result.getString("name"));
+			return result.getString("name");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return "";
+		}
 	}
 	
 	
