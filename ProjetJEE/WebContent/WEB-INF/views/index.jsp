@@ -10,16 +10,18 @@
 	<body>
 		<div class="container">
 			<h1>Puissance 4</h1>
-			<div class="row">
-			  <div class="col-lg-6">
-			    <div class="input-group">
-			      <input type="text" class="form-control" placeholder="Votre Pseudo">
-			      <span class="input-group-btn">
-			        <button id="btn-valid_pseudo" class="btn btn-default" type="button">Valider</button>
-			      </span>
-			    </div><!-- /input-group -->
-			  </div><!-- /.col-lg-6 -->
-			</div><!-- /.row -->
+			<form action="loading" method="POST">
+				<div class="row">
+				  <div class="col-lg-6">
+				    <div class="input-group">
+				      <input name="pseudo" type="text" class="form-control" placeholder="Votre Pseudo">
+				      <span class="input-group-btn">
+				        <button id="btn-valid_pseudo" class="btn btn-default" type="submit">Valider</button>
+				      </span>
+				    </div><!-- /input-group -->
+				  </div><!-- /.col-lg-6 -->
+				</div><!-- /.row -->
+			</form>
 		</div>
 	</body>
 </html>

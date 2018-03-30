@@ -15,6 +15,10 @@ public class indexServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	public void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		
+
+
 		req.getRequestDispatcher("WEB-INF/views/index.jsp").forward(req, resp);
 	}
 
