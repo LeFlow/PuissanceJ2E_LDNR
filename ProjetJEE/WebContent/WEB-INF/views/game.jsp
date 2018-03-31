@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="css/jeu.css">
 	<script src='js/jquery-3.3.1.min.js'></script>
 	<script defer src="js/jeu.js"></script>
-<title>jeu2</title>
+<title>game</title>
 </head>
 <body>
 	<h1>Bienvenue dans notre jeu Puissance LDNR</h1>
