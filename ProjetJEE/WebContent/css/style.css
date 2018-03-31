@@ -1,0 +1,22 @@
+/*design ... du bouton de la grille */
+.topbutton{
+	padding:20px;
+	border:2px solid black;
+	background:white;
+	font-size:40pt;
+	font-family:Chalkboard SE;
+	color:black;
+	margin:0px;
+	margin-right:0px;
+	width: 100px;  
+	height:100px;
+}
+/* changement accordée lorsqu'on passe au dessus d'un bouton de la grille*/
+.topbutton:hover{
+	background:lightblue;
+	cursor: pointer;
+}
+/*placement de la grille de jeu*/
+#topform{
+	margin-left:100px;
+}
