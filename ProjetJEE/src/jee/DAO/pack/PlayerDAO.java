@@ -12,7 +12,7 @@ public class PlayerDAO {
 	
 	public PlayerDAO() throws Exception {
 		Class.forName("com.mysql.jdbc.Driver");
-		conn = DriverManager.getConnection("jdbc:mysql://localhost/puissancebase", "root", "1234512345");
+		conn = DriverManager.getConnection("jdbc:mysql://localhost/puissancebase", "root", "");
 		conn.createStatement().execute("CREATE TABLE IF NOT EXISTS JOUEURS(ID int primary key AUTO_INCREMENT NOT NULL,PSEUDO VARCHAR(100))");
 	}
 	
