@@ -65,9 +65,14 @@ public class loaderServlet extends HttpServlet {
 			NameOppenent = oppenent.findPlayerNameById(idOppenent);
 			System.out.println(NameOppenent);
 			req.setAttribute("oppenent", NameOppenent);
+			if(NameOppenent != req.getParameter("pseudo")){
+				req.getRequestDispatcher("WEB-INF/views/loader.jsp").forward(req, resp);
+			}
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
+        
+        
         
     	req.getRequestDispatcher("WEB-INF/views/loader.jsp").forward(req, resp);
 

@@ -1,4 +1,4 @@
-package puissanceldnrproject;
+package jee.servlet.pack;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,10 +7,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import jee.DAO.pack.PartieDAO;
+
 @SuppressWarnings("serial") 
 @WebServlet("/game")
 
-public class JeuServlet extends HttpServlet{
+public class gameServlet extends HttpServlet{
 	
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse res) 
