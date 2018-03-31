@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" import="jee.DAO.pack.*" pageEncoding="UTF-8"%>
-
+<%@ include file="head.jsp" %>
 <%@taglib uri ="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 
 <!DOCTYPE html>
@@ -17,6 +17,9 @@
 <body>
 	
 	<h1>Bienvenue dans notre jeu Puissance LDNR</h1>
+	<h3>Vous : ${ player1 }</h3>
+	<h3>Adversaire : ${ player2 }</h3>
+	
 	<section id="formulaire">
 		<form method="post" action="jeu">
 			<table>

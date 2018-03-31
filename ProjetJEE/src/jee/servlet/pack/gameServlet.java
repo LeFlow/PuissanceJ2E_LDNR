@@ -28,11 +28,11 @@ public class gameServlet extends HttpServlet{
 				//new JoueurDAO().insererJoueur(
 				//	req.getParameter("pseudo"));
 				
-				new PartieDAO().insererPartie(
-					req.getParameter("num_partie"),
-					req.getParameter("joueur"),
-					positionx,
-					positiony);
+//				new PartieDAO().insererPartie(
+//					req.getParameter("num_partie"),
+//					req.getParameter("joueur"),
+//					positionx,
+//					positiony);
 				
 			}catch (Exception ex) {getServletContext().log("Exc:"+ ex);}
 		}

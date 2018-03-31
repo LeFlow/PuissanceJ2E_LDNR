@@ -24,21 +24,21 @@ public class PartieDAO {
 		ps.executeUpdate();
 	}
 	
-	public ArrayList<PartieBean> coordonneesBouton (String numeropartie,String joueur) throws Exception{
-		ArrayList<PartieBean> partielist = new ArrayList<>();
-		PreparedStatement ps = conn.prepareStatement("SELECT * FROM PARTIEENCOURS WHERE num_partie=? AND joueur=?");
-		
-		ps.setString(1,numeropartie);
-		ps.setString(2,joueur);
-		
-		ResultSet result = ps.executeQuery();
-		
-		while (result.next()) {
-			String num_partie_bean = result.getString("num_partie");
-			String joueur_bean = result.getString("joueur");
-			String adresse_case_bean = result.getString("adressecase");
-			partielist.add(new PartieBean(num_partie_bean, joueur_bean, adresse_case_bean));
-		}
-		return partielist;
-	}
+//	public ArrayList<PartieBean> coordonneesBouton (String numeropartie,String joueur) throws Exception{
+//		ArrayList<PartieBean> partielist = new ArrayList<>();
+//		PreparedStatement ps = conn.prepareStatement("SELECT * FROM PARTIEENCOURS WHERE num_partie=? AND joueur=?");
+//		
+//		ps.setString(1,numeropartie);
+//		ps.setString(2,joueur);
+//		
+//		ResultSet result = ps.executeQuery();
+//		
+//		while (result.next()) {
+//			String num_partie_bean = result.getString("num_partie");
+//			String joueur_bean = result.getString("joueur");
+//			String adresse_case_bean = result.getString("adressecase");
+//			partielist.add(new PartieBean(num_partie_bean, joueur_bean, adresse_case_bean));
+//		}
+//		return partielist;
+//	}
 }

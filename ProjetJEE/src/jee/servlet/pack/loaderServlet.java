@@ -51,7 +51,7 @@ public class loaderServlet extends HttpServlet {
         				e.printStackTrace();
         			}
             	}
-        	req.getRequestDispatcher("WEB-INF/views/loader.jsp").forward(req, resp);
+//        	req.getRequestDispatcher("WEB-INF/views/loader.jsp").forward(req, resp);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -65,15 +65,16 @@ public class loaderServlet extends HttpServlet {
 			NameOppenent = oppenent.findPlayerNameById(idOppenent);
 			System.out.println(NameOppenent);
 			req.setAttribute("oppenent", NameOppenent);
-			if(NameOppenent != req.getParameter("pseudo")){
-				req.getRequestDispatcher("WEB-INF/views/loader.jsp").forward(req, resp);
+			if(!NameOppenent.equals(req.getParameter("pseudo")) && !NameOppenent.isEmpty()){
+				System.out.println("go to game");
+				req.setAttribute("player1", req.getParameter("pseudo"));
+				req.setAttribute("player2", NameOppenent);
+				req.getRequestDispatcher("WEB-INF/views/game.jsp").forward(req, resp);
 			}
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-        
-        
-        
+
     	req.getRequestDispatcher("WEB-INF/views/loader.jsp").forward(req, resp);
 
 	}
