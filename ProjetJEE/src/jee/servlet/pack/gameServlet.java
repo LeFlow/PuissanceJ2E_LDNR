@@ -129,7 +129,7 @@ public class gameServlet extends HttpServlet{
 	    ( valeurrecuperer.contains("5") && valeurrecuperer.contains("11") && valeurrecuperer.contains("17") && valeurrecuperer.contains("23") ) ||
 	    //Solution 27 : case 3,7,11,15
 	    ( valeurrecuperer.contains("3") && valeurrecuperer.contains("7") && valeurrecuperer.contains("11") && valeurrecuperer.contains("15") ) ||
-	    //Solution 28 : case 5,11,17,23
+	    //Solution 28 : case 9,13,17,21
 	    ( valeurrecuperer.contains("9") && valeurrecuperer.contains("13") && valeurrecuperer.contains("17") && valeurrecuperer.contains("21") )		
 		
 		) {
