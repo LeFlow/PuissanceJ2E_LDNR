@@ -15,7 +15,7 @@
 </head>
 <body>
 	<h1>Bienvenue dans notre jeu Puissance LDNR</h1>
-	<form id="topform" method="post" action="jeu2">
+	<form id="topform" method="post" action="game">
 		<p id="info_partie">
 		<input  name ="joueur" value="ldnr" id="joueurid"/>
 		<input  name ="num_partie" value="partie1" id ="num_partieid"/>
