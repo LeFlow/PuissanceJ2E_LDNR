@@ -20,8 +20,15 @@ public class gameServlet extends HttpServlet{
 	protected void service(HttpServletRequest req, HttpServletResponse res) 
 					throws ServletException, IOException {
 		
-		//String num_partie = (String)req.getSession().getAttribute("jeu2");
+		//HttpSession session = req.getSession(true);
 		
+		Integer cpt = (Integer)req.getSession().getAttribute("refresh");
+		if (cpt == null)
+			cpt = 0;
+		req.getSession().setAttribute("refresh", cpt);
+		
+		
+		req.setAttribute("gagnant","perdant");
 		//on récupère sur la page la value ou le name est un "num_partie"
 		String numeropartie = req.getParameter("num_partie");
 		
@@ -31,27 +38,32 @@ public class gameServlet extends HttpServlet{
 		
 		//on récupère sur la page la value ou le nam est "adressecase"
 		String adressecase = req.getParameter("adressecase");
+		//on vide l'attribut adresse pour le premier chargement
+		req.setAttribute("adressecase"," ");
 		
 		//on crée un tableau ou l'on stocke ces valeurs.
 		String valeurcocheetab[] = {" "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "};
-
-		if(req.getMethod().equals("GET")) {
-			getServletContext().log("ajout dans la table partie");
+		
+		if(req.getMethod().equals("POST")) {	
+			getServletContext().log("//////////////////////// PASSAGE DANS LE GET ////////////////////////");
+			//dès que l'on sectionne la méthode POST on EFFACE la ligne dans la base
 			try {
-					new PartieDAO().insererPartie(
+					new PartieDAO().effacer(
 						req.getParameter("num_partie"),
 						req.getParameter("joueur"),
 						adressecase);
 					
-				}catch (Exception ex) {getServletContext().log("Exc:"+ ex);
-			}
+				}catch (Exception ex) {getServletContext().log("Exc:"+ ex);}
+			//dès que l'on sectionne la méthode POST on AJOUTE la ligne dans la base
+			try {
+				new PartieDAO().insererPartie(
+					req.getParameter("num_partie"),
+					req.getParameter("joueur"),
+					adressecase);
+				
+			}catch (Exception ex) {getServletContext().log("Exc:"+ ex);}
+				
 		}
-		
-		System.out.println("valeur idjoueur :" + idjoueur); //ok
-		System.out.println("valeur numeropartie:" + numeropartie);//ok
-		
-		//for (String itemvaleur : valeurcocheetab)
-		//	System.out.println(itemvaleur);
 		
 		//on créer une ArrayList des valeurrecuperer pour les positions pour "un joueur et une partie donnée"
 		ArrayList<String> valeurrecuperer = new ArrayList<>();
@@ -60,6 +72,7 @@ public class gameServlet extends HttpServlet{
 		//on remplit dans des objets partie bean avec le même numéro de partie et le même idjoueur
 		//la liste valeurrecuperer
 		try {
+			getServletContext().log("creation des beans id1");
 			for (PartieBean partieitem : (new PartieDAO()).coordonneesBouton(numeropartie, idjoueur))
 				valeurrecuperer.add(partieitem.getAdressecase());
 		} catch (Exception e) {
@@ -67,6 +80,7 @@ public class gameServlet extends HttpServlet{
 		}
 		
 		try {
+			getServletContext().log("creation des beans id2");
 			for (PartieBean partieitem : (new PartieDAO()).coordonneesBouton(numeropartie, idjoueur2))
 				valeurrecuperer2.add(partieitem.getAdressecase());
 		} catch (Exception e) {
@@ -132,17 +146,16 @@ public class gameServlet extends HttpServlet{
 	    //Solution 28 : case 9,13,17,21
 	    ( valeurrecuperer.contains("9") && valeurrecuperer.contains("13") && valeurrecuperer.contains("17") && valeurrecuperer.contains("21") )		
 		
-		) {
+		) 
+			{
 			try {
 				new PartieDAO().viderTablePartie();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			req.setAttribute("adressecase"," ");
-			req.getRequestDispatcher("WEB-INF/views/gain.jsp").forward(req, res);
-			//req.setAttribute("gagnant","gagné");
+			req.setAttribute("gagnant","gagne");
 		}
-		
 		
 		//on parcours la liste valeur recuperer qui est composée d'objet String pour les convertir en int 
 		//et pour la valeur récupérer on assignie X pour l'indice dans le tableau valeurcocheetab
@@ -150,22 +163,19 @@ public class gameServlet extends HttpServlet{
 		// ce X sera alors affichée sur la grille par l'intermédiaire du ${valeurcocheetab[3]} donc X
 		
 		for (String itemvaleur : valeurrecuperer) {
+			getServletContext().log("recupere valeur X");
 			int toointvaleur = Integer.parseInt(itemvaleur);
 			valeurcocheetab[toointvaleur]="X";
 		}
 		
 		for (String itemvaleur : valeurrecuperer2) {
+			getServletContext().log("recupere valeur O");
 			int toointvaleur = Integer.parseInt(itemvaleur);
 			valeurcocheetab[toointvaleur]="O";
 		}
 		
-		
-		
-		//for (String itemvaleur : valeurcocheetab)
-			//System.out.println(itemvaleur);
-		
+		//on affiche dans la c:out dans jeu.jsp les valeurs qui sont cochées.
 		req.setAttribute("casecochees",valeurcocheetab);
-		
 			
 		req.getRequestDispatcher("WEB-INF/views/jeu.jsp").forward(req, res);
 	}

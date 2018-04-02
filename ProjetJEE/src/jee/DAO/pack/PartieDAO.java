@@ -6,9 +6,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import puissanceldnrproject.PartieBean;
+
 public class PartieDAO {
 	
-	private Connection conn;
+private Connection conn;
 	
 	public PartieDAO() throws Exception {
 		Class.forName("com.mysql.jdbc.Driver");
@@ -16,8 +18,22 @@ public class PartieDAO {
 		conn.createStatement().execute("CREATE TABLE IF NOT EXISTS PARTIEENCOURS(NUM_PARTIE VARCHAR(100),JOUEUR VARCHAR(100),ADRESSECASE VARCHAR(100))");
 	}
 	
+	public void viderTablePartie() throws Exception{
+		PreparedStatement ps = conn.prepareStatement("DROP TABLE PARTIEENCOURS");
+		ps.executeUpdate();
+	}
+	
 	public void insererPartie (String num_partie,String joueur,String adressecase) throws Exception{
 		PreparedStatement ps = conn.prepareStatement("INSERT INTO PARTIEENCOURS (num_partie,joueur,adressecase) VALUES (?,?,?)");
+		ps.setString(1,num_partie);
+		ps.setString(2,joueur);
+		ps.setString(3,adressecase);
+		ps.executeUpdate();
+	}
+	
+	
+	public void effacer (String num_partie,String joueur,String adressecase) throws Exception{
+		PreparedStatement ps = conn.prepareStatement("DELETE FROM PARTIEENCOURS WHERE num_partie=? AND joueur=? AND adressecase=?");
 		ps.setString(1,num_partie);
 		ps.setString(2,joueur);
 		ps.setString(3,adressecase);
@@ -38,4 +54,5 @@ public class PartieDAO {
 		}
 		return partielist;
 	}
+
 }
